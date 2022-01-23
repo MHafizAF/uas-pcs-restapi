@@ -13,7 +13,7 @@ class Transaksi_model extends CI_Model{
     // function laporan mingguan
     public function laporanMingguan()
     {
-        $dataMingguan = $this->db->query('SELECT tanggal, SUM(harga) as total FROM penjualan JOIN detail_penjualan ON penjualan.no_transaksi = detail_penjualan.no_transaksi where tanggal BETWEEN CURDATE() and DATE_ADD(CURDATE(), INTERVAL 1 WEEK) GROUP BY tanggal');
+        $dataMingguan = $this->db->query('SELECT tanggal, SUM(harga) AS total FROM penjualan JOIN detail_penjualan ON penjualan.no_transaksi = detail_penjualan.no_transaksi WHERE tanggal BETWEEN DATE_ADD(CURDATE(), INTERVAL - 1 WEEK) AND CURDATE() GROUP BY tanggal');
 
         return $dataMingguan->result_array();
     }
